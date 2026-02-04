@@ -1,25 +1,31 @@
-# Various IDEs and Editors
+# Dependencies
+node_modules/
+
+# Other projects in repo (separate apps)
+cedar-roots-storefront/
+.dfx/
+target/
+
+# Build
+dist/
+out/
+.next/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE / OS
 .vscode/
 .idea/
 **/*~
-
-# Mac OSX temporary files
 .DS_Store
 **/.DS_Store
 
-# dfx temporary files
-.dfx/
+# Test
+coverage/
 
-# generated files
-**/declarations/
-
-# rust
-target/
-
-# frontend code
-node_modules/
-dist/
-.svelte-kit/
-
-# environment variables
-.env
+# Logs
+*.log
+npm-debug.log*
