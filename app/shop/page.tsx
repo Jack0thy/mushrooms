@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import { ShopClient } from "@/components/shop/shop-client";
 import { products, categories, intendedUseOptions } from "@/data/products";
@@ -10,11 +11,13 @@ export const metadata: Metadata = {
 
 export default function ShopPage() {
   return (
-    <ShopClient
-      products={products}
-      categories={categories}
-      intendedUseOptions={intendedUseOptions}
-      species={species.map((s) => ({ slug: s.slug, name: s.name }))}
-    />
+    <Suspense fallback={<div className="container mx-auto min-h-[40vh] px-4 py-8" />}>
+      <ShopClient
+        products={products}
+        categories={categories}
+        intendedUseOptions={intendedUseOptions}
+        species={species.map((s) => ({ slug: s.slug, name: s.name }))}
+      />
+    </Suspense>
   );
 }
