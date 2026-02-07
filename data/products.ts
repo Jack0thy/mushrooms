@@ -75,6 +75,19 @@ export const products: Product[] = [
     stock: "in_stock",
     storageNotes: "Refrigerate in paper bag; use within 5–7 days.",
   },
+  {
+    id: "fresh-blue-oyster-113",
+    slug: "blue-oyster-113g",
+    name: "Blue Oyster — 113g (¼ lb)",
+    description: "Mild, tender oyster with grey-blue caps. Great for sautés, stir-fries, and pasta.",
+    price: 1150,
+    category: "fresh",
+    intendedUse: ["cooking"],
+    speciesSlug: "blue-oyster",
+    tags: ["Beginner-friendly", "Fast growing"],
+    stock: "in_stock",
+    storageNotes: "Refrigerate in paper bag; use within 5–7 days.",
+  },
   // Liquid cultures
   {
     id: "lc-lions-mane",

@@ -141,6 +141,35 @@ export const species: Species[] = [
       "We grow Pioppino for its exceptional flavor and versatility. It’s a chef favorite and a grower favorite—rewarding to cultivate and to cook, with a depth that elevates simple dishes.",
     pairsWellWith: ["White wine", "Garlic", "Parmesan", "Cream", "Thyme"],
   },
+  {
+    slug: "blue-oyster",
+    name: "Blue Oyster",
+    scientificName: "Pleurotus ostreatus var. columbinus",
+    tagline: "Mild, tender, fast-growing; grey-blue caps, versatile in the kitchen.",
+    taste: "Mild, slightly sweet, delicate.",
+    texture: "Tender, soft; cooks quickly.",
+    bestForCooking: "Sautés, stir-fries, soups, pasta; avoid long, high-heat cooking.",
+    difficultyToGrow: 1,
+    yield: "high",
+    co2Tolerance: "high",
+    storageLifeFridge: "5–7 days in paper bag.",
+    overview:
+      "Blue Oyster is a beautiful, fast-fruiting variety with grey-blue caps and a mild, versatile flavor. It's one of the easiest mushrooms to grow and a great introduction to both cultivation and cooking with gourmet oysters.",
+    flavorAndCooking:
+      "Blue Oyster has a mild, slightly sweet flavor that doesn't overpower other ingredients. It's tender and cooks quickly—ideal for quick sautés, stir-fries, and adding to soups or pasta in the last few minutes.",
+    cookingSuggestions: [
+      "Sauté with garlic and butter; serve on toast or over grains.",
+      "Add to stir-fries or ramen in the last 2–3 minutes.",
+      "Tear into strips and use in tacos, wraps, or as a pizza topping.",
+    ],
+    cultivationNotes:
+      "Very forgiving; tolerates higher CO₂ and a range of temps. Fruits quickly on straw, supplemented sawdust, or masters mix. Great for beginners and high yields in a short cycle.",
+    storageAndHandling:
+      "Refrigerate in paper bag. Delicate—use within 5–7 days. Avoid sealing in plastic.",
+    whyWeGrowIt:
+      "We grow Blue Oyster for its ease of cultivation, reliable yield, and approachable flavor. It's the mushroom we recommend to new growers and to anyone new to cooking with gourmet varieties.",
+    pairsWellWith: ["Garlic", "Butter", "Soy", "Ginger", "Lemon"],
+  },
 ];
 
 export function getSpeciesBySlug(slug: string): Species | undefined {
@@ -148,5 +177,5 @@ export function getSpeciesBySlug(slug: string): Species | undefined {
 }
 
 export function getFeaturedSpecies(): Species[] {
-  return species; // all four as featured
+  return species; // all species as featured
 }
