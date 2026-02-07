@@ -2,6 +2,7 @@
 node_modules/
 
 # Other projects in repo (separate apps)
+cedar-roots-storefront/
 .dfx/
 target/
 

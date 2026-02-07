@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -22,6 +23,15 @@ interface ProductDetailSheetProps {
 
 export function ProductDetailSheet({ product, open, onOpenChange }: ProductDetailSheetProps) {
   const { addItem } = useCart();
+  const hasVariants = product.variants && product.variants.length > 1;
+  const [selectedVariant, setSelectedVariant] = useState(
+    hasVariants ? product.variants![0] : null
+  );
+  useEffect(() => {
+    if (open && hasVariants) setSelectedVariant(product.variants![0]);
+  }, [open, hasVariants, product.variants]);
+  const displayPrice = selectedVariant ? selectedVariant.price : product.price;
+  const variantIdForCart = selectedVariant ? selectedVariant.id : product.variantId;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -33,7 +43,29 @@ export function ProductDetailSheet({ product, open, onOpenChange }: ProductDetai
         <div className="aspect-[4/3] w-full bg-muted rounded-md flex items-center justify-center my-4">
           <SporeCircles className="h-16 w-16 text-muted-foreground/50" />
         </div>
-        <p className="text-lg font-semibold">{formatPrice(product.price)}</p>
+        {hasVariants && (
+          <div className="mb-4">
+            <label htmlFor={`detail-variant-${product.id}`} className="text-sm font-medium">
+              Size
+            </label>
+            <select
+              id={`detail-variant-${product.id}`}
+              value={selectedVariant?.id ?? ""}
+              onChange={(e) => {
+                const v = product.variants!.find((x) => x.id === e.target.value);
+                if (v) setSelectedVariant(v);
+              }}
+              className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            >
+              {product.variants!.map((v) => (
+                <option key={v.id} value={v.id}>
+                  {v.title} — {formatPrice(v.price)}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        <p className="text-lg font-semibold">{formatPrice(displayPrice)}</p>
         {product.storageNotes && (
           <>
             <Separator />
@@ -63,7 +95,7 @@ export function ProductDetailSheet({ product, open, onOpenChange }: ProductDetai
             className="flex-1"
             disabled={product.stock === "out"}
             onClick={() => {
-              addItem(product, 1);
+              addItem(product, 1, variantIdForCart);
               onOpenChange(false);
             }}
           >

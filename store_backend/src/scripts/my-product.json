@@ -1,0 +1,49 @@
+{
+  "title": "Black Pearl King Oyster",
+  "subtitle": "Pleurotus eryngii × Pleurotus ostreatus",
+  "description": "Thick-stemmed, meaty, subtly sweet and savory.\n\nBest For: Searing, grilling, roasting; slice stems like scallops.",
+  "handle": "black-pearl-king-oyster-fresh",
+  "weight": 250,
+  "images": [],
+  "options": [
+    { "title": "Weight", "values": ["¼ lb (113g)", "½ lb (227g)", "1 lb (454g)"] }
+  ],
+  "variants": [
+    {
+      "title": "¼ lb (113g)",
+      "sku": "BPKO-113",
+      "options": { "Weight": "¼ lb (113g)" },
+      "prices": [
+        { "amount": 1250, "currency_code": "usd" },
+        { "amount": 1250, "currency_code": "eur" }
+      ]
+    },
+    {
+      "title": "½ lb (227g)",
+      "sku": "BPKO-227",
+      "options": { "Weight": "½ lb (227g)" },
+      "prices": [
+        { "amount": 2200, "currency_code": "usd" },
+        { "amount": 2200, "currency_code": "eur" }
+      ]
+    },
+    {
+      "title": "1 lb (454g)",
+      "sku": "BPKO-454",
+      "options": { "Weight": "1 lb (454g)" },
+      "prices": [
+        { "amount": 4000, "currency_code": "usd" },
+        { "amount": 4000, "currency_code": "eur" }
+      ]
+    }
+  ],
+  "metadata": {
+    "category": "fresh",
+    "intendedUse": ["cooking"],
+    "speciesSlug": "black-pearl-king-oyster",
+    "tags": ["High yield", "Meaty texture"],
+    "stock": "in_stock"
+  },
+  "collection_id": "pcol_01KGWP8J4HTF4P3MJ1Q7Q91DR0"
+}
+

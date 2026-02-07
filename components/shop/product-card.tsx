@@ -19,6 +19,12 @@ const stockLabels: Record<string, string> = {
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [detailOpen, setDetailOpen] = useState(false);
+  const hasVariants = product.variants && product.variants.length > 1;
+  const [selectedVariant, setSelectedVariant] = useState(
+    hasVariants ? product.variants![0] : null
+  );
+  const displayPrice = selectedVariant ? selectedVariant.price : product.price;
+  const variantIdForCart = selectedVariant ? selectedVariant.id : product.variantId;
   const stockLabel = stockLabels[product.stock] ?? product.stock;
 
   return (
@@ -31,6 +37,28 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="text-xs font-medium text-muted-foreground">{stockLabel}</p>
           <h3 className="font-semibold leading-tight">{product.name}</h3>
           <p className="line-clamp-2 text-sm text-muted-foreground">{product.description}</p>
+          {hasVariants && (
+            <div className="pt-2">
+              <label htmlFor={`variant-${product.id}`} className="sr-only">
+                Size
+              </label>
+              <select
+                id={`variant-${product.id}`}
+                value={selectedVariant?.id ?? ""}
+                onChange={(e) => {
+                  const v = product.variants!.find((x) => x.id === e.target.value);
+                  if (v) setSelectedVariant(v);
+                }}
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                {product.variants!.map((v) => (
+                  <option key={v.id} value={v.id}>
+                    {v.title} — {formatPrice(v.price)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           {product.tags.length > 0 && (
             <div className="flex flex-wrap gap-1 pt-1">
               {product.tags.slice(0, 2).map((t) => (
@@ -42,7 +70,7 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </CardHeader>
         <CardFooter className="mt-auto flex items-center justify-between border-t pt-4">
-          <span className="font-medium">{formatPrice(product.price)}</span>
+          <span className="font-medium">{formatPrice(displayPrice)}</span>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={() => setDetailOpen(true)}>
               Details
@@ -50,7 +78,7 @@ export function ProductCard({ product }: { product: Product }) {
             <Button
               size="sm"
               disabled={product.stock === "out"}
-              onClick={() => addItem(product, 1)}
+              onClick={() => addItem(product, 1, variantIdForCart)}
             >
               Add to cart
             </Button>

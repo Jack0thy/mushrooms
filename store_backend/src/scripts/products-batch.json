@@ -1,0 +1,466 @@
+[
+  {
+    "title": "Black Pearl King Oyster — 113g (¼ lb)",
+    "description": "Thick-stemmed, meaty oyster. Subtly sweet and savory. Ideal for searing and roasting.",
+    "handle": "black-pearl-king-oyster-113g",
+    "weight": 120,
+    "variants": [
+      {
+        "title": "¼ lb (113g)",
+        "sku": "BPKO-113",
+        "prices": [
+          { "amount": 1250, "currency_code": "usd" },
+          { "amount": 1250, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "fresh",
+      "intendedUse": ["cooking"],
+      "speciesSlug": "black-pearl-king-oyster",
+      "tags": ["High yield", "Meaty texture"],
+      "stock": "in_stock"
+    },
+    "collection_id": "pcol_01KGWP8J4HTF4P3MJ1Q7Q91DR0"
+  },
+  {
+    "title": "Lion's Mane — 113g (¼ lb)",
+    "description": "Tender, seafood-like. Delicate flavor, soft texture. Great pan-seared or in \"crab\" cakes.",
+    "handle": "lions-mane-113g",
+    "weight": 120,
+    "variants": [
+      {
+        "title": "¼ lb (113g)",
+        "sku": "LM-113",
+        "prices": [
+          { "amount": 1450, "currency_code": "usd" },
+          { "amount": 1450, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "fresh",
+      "intendedUse": ["cooking"],
+      "speciesSlug": "lions-mane",
+      "tags": ["Delicate", "Seafood-like"],
+      "stock": "limited"
+    }
+  },
+  {
+    "title": "Chestnut Mushroom — 113g (¼ lb)",
+    "description": "Firm, nutty, earthy. Holds up in sautés, stir-fries, and roasting.",
+    "handle": "chestnut-mushroom-113g",
+    "weight": 120,
+    "variants": [
+      {
+        "title": "¼ lb (113g)",
+        "sku": "CHEST-113",
+        "prices": [
+          { "amount": 1150, "currency_code": "usd" },
+          { "amount": 1150, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "fresh",
+      "intendedUse": ["cooking"],
+      "speciesSlug": "chestnut",
+      "tags": ["Firm texture", "Cold tolerant"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Pioppino — 113g (¼ lb)",
+    "description": "Rich, wine-like umami. Firm and meaty. Excellent in sauces and risottos.",
+    "handle": "pioppino-113g",
+    "weight": 120,
+    "variants": [
+      {
+        "title": "¼ lb (113g)",
+        "sku": "PIO-113",
+        "prices": [
+          { "amount": 1250, "currency_code": "usd" },
+          { "amount": 1250, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "fresh",
+      "intendedUse": ["cooking"],
+      "speciesSlug": "pioppino",
+      "tags": ["Umami", "Firm"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Blue Oyster — 113g (¼ lb)",
+    "description": "Mild, tender oyster with grey-blue caps. Great for sautés, stir-fries, and pasta.",
+    "handle": "blue-oyster-113g",
+    "weight": 120,
+    "variants": [
+      {
+        "title": "¼ lb (113g)",
+        "sku": "BO-113",
+        "prices": [
+          { "amount": 1150, "currency_code": "usd" },
+          { "amount": 1150, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "fresh",
+      "intendedUse": ["cooking"],
+      "speciesSlug": "blue-oyster",
+      "tags": ["Beginner-friendly", "Fast growing"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Black Pearl King Oyster Liquid Culture",
+    "description": "Sterile LC for high-yield, meaty oysters. Good for buckets or bags.",
+    "handle": "black-pearl-king-oyster-liquid-culture",
+    "weight": 50,
+    "variants": [
+      {
+        "title": "1 syringe",
+        "sku": "LC-BPKO",
+        "prices": [
+          { "amount": 2495, "currency_code": "usd" },
+          { "amount": 2495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "liquid-culture",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "black-pearl-king-oyster",
+      "tags": ["High yield", "Fast colonizer"],
+      "stock": "in_stock"
+    },
+    "collection_id": "pcol_01KGWP8J4HTF4P3MJ1Q7Q91DR0"
+  },
+  {
+    "title": "Lion's Mane Liquid Culture",
+    "description": "Sterile liquid culture syringe. Ready to inoculate grain or use with agar.",
+    "handle": "lions-mane-liquid-culture",
+    "weight": 50,
+    "variants": [
+      {
+        "title": "1 syringe",
+        "sku": "LC-LM",
+        "prices": [
+          { "amount": 2495, "currency_code": "usd" },
+          { "amount": 2495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "liquid-culture",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "lions-mane",
+      "tags": ["Beginner-friendly", "Fast colonizer"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Chestnut Liquid Culture",
+    "description": "Sterile LC. Cold-tolerant strain; good for cooler fruiting.",
+    "handle": "chestnut-liquid-culture",
+    "weight": 50,
+    "variants": [
+      {
+        "title": "1 syringe",
+        "sku": "LC-CHEST",
+        "prices": [
+          { "amount": 2495, "currency_code": "usd" },
+          { "amount": 2495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "liquid-culture",
+      "intendedUse": ["intermediate-grow"],
+      "speciesSlug": "chestnut",
+      "tags": ["Cold tolerant", "Intermediate"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Pioppino Liquid Culture",
+    "description": "Sterile liquid culture. Rich, wine-like strain; excellent for supplemented substrate.",
+    "handle": "pioppino-liquid-culture",
+    "weight": 50,
+    "variants": [
+      {
+        "title": "1 syringe",
+        "sku": "LC-PIO",
+        "prices": [
+          { "amount": 2495, "currency_code": "usd" },
+          { "amount": 2495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "liquid-culture",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "pioppino",
+      "tags": ["Umami", "Firm"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Blue Oyster Liquid Culture",
+    "description": "Sterile liquid culture. Fast-colonizing; ideal for beginners and high yield.",
+    "handle": "blue-oyster-liquid-culture",
+    "weight": 50,
+    "variants": [
+      {
+        "title": "1 syringe",
+        "sku": "LC-BO",
+        "prices": [
+          { "amount": 2495, "currency_code": "usd" },
+          { "amount": 2495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "liquid-culture",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "blue-oyster",
+      "tags": ["Beginner-friendly", "Fast colonizer"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Black Pearl King Oyster Grain Spawn (2 lb)",
+    "description": "Rye grain spawn. Ideal for bucket or bag grows.",
+    "handle": "black-pearl-king-oyster-grain-spawn",
+    "weight": 1000,
+    "variants": [
+      {
+        "title": "2 lb",
+        "sku": "SPAWN-BPKO",
+        "prices": [
+          { "amount": 3295, "currency_code": "usd" },
+          { "amount": 3295, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grain-spawn",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "black-pearl-king-oyster",
+      "tags": ["High yield", "Beginner-friendly"],
+      "stock": "limited"
+    },
+    "collection_id": "pcol_01KGWP8J4HTF4P3MJ1Q7Q91DR0"
+  },
+  {
+    "title": "Lion's Mane Grain Spawn (2 lb)",
+    "description": "Rye grain spawn. Ready to spawn to bulk substrate.",
+    "handle": "lions-mane-grain-spawn",
+    "weight": 1000,
+    "variants": [
+      {
+        "title": "2 lb",
+        "sku": "SPAWN-LM",
+        "prices": [
+          { "amount": 3495, "currency_code": "usd" },
+          { "amount": 3495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grain-spawn",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "lions-mane",
+      "tags": ["Beginner-friendly", "Ready to spawn"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Chestnut Grain Spawn (2 lb)",
+    "description": "Rye grain spawn. Cold-tolerant strain; ready for bulk substrate.",
+    "handle": "chestnut-grain-spawn",
+    "weight": 1000,
+    "variants": [
+      {
+        "title": "2 lb",
+        "sku": "SPAWN-CHEST",
+        "prices": [
+          { "amount": 3295, "currency_code": "usd" },
+          { "amount": 3295, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grain-spawn",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "chestnut",
+      "tags": ["Cold tolerant", "Ready to spawn"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Pioppino Grain Spawn (2 lb)",
+    "description": "Rye grain spawn. Rich, wine-like strain; ideal for supplemented sawdust or straw.",
+    "handle": "pioppino-grain-spawn",
+    "weight": 1000,
+    "variants": [
+      {
+        "title": "2 lb",
+        "sku": "SPAWN-PIO",
+        "prices": [
+          { "amount": 3295, "currency_code": "usd" },
+          { "amount": 3295, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grain-spawn",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "pioppino",
+      "tags": ["Umami", "Ready to spawn"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Blue Oyster Grain Spawn (2 lb)",
+    "description": "Rye grain spawn. Fast-colonizing; great for straw or supplemented substrate.",
+    "handle": "blue-oyster-grain-spawn",
+    "weight": 1000,
+    "variants": [
+      {
+        "title": "2 lb",
+        "sku": "SPAWN-BO",
+        "prices": [
+          { "amount": 3295, "currency_code": "usd" },
+          { "amount": 3295, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grain-spawn",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "blue-oyster",
+      "tags": ["Beginner-friendly", "Fast colonizer"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Black Pearl King Oyster Grow Kit",
+    "description": "All-in-one kit: inoculated substrate, bag, and instructions. High-yield, meaty oysters in 1–2 weeks.",
+    "handle": "black-pearl-king-oyster-grow-kit",
+    "weight": 1500,
+    "variants": [
+      {
+        "title": "1 kit",
+        "sku": "KIT-BPKO",
+        "prices": [
+          { "amount": 4495, "currency_code": "usd" },
+          { "amount": 4495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grow-kit",
+      "intendedUse": ["beginner-grow"],
+      "speciesSlug": "black-pearl-king-oyster",
+      "tags": ["High yield", "All-in-one"],
+      "stock": "in_stock"
+    },
+    "collection_id": "pcol_01KGWP8J4HTF4P3MJ1Q7Q91DR0"
+  },
+  {
+    "title": "Lion's Mane Grow Kit",
+    "description": "All-in-one kit: inoculated substrate, bag, and instructions. Fruit delicate, seafood-like Lion's Mane in 2–3 weeks.",
+    "handle": "lions-mane-grow-kit",
+    "weight": 1500,
+    "variants": [
+      {
+        "title": "1 kit",
+        "sku": "KIT-LM",
+        "prices": [
+          { "amount": 4495, "currency_code": "usd" },
+          { "amount": 4495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grow-kit",
+      "intendedUse": ["beginner-grow"],
+      "speciesSlug": "lions-mane",
+      "tags": ["Beginner-friendly", "All-in-one"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Chestnut Mushroom Grow Kit",
+    "description": "All-in-one kit: inoculated substrate, bag, and instructions. Firm, nutty chestnuts in 2–3 weeks.",
+    "handle": "chestnut-grow-kit",
+    "weight": 1500,
+    "variants": [
+      {
+        "title": "1 kit",
+        "sku": "KIT-CHEST",
+        "prices": [
+          { "amount": 4495, "currency_code": "usd" },
+          { "amount": 4495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grow-kit",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "chestnut",
+      "tags": ["Cold tolerant", "All-in-one"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Pioppino Grow Kit",
+    "description": "All-in-one kit: inoculated substrate, bag, and instructions. Rich, wine-like pioppino in 2–3 weeks.",
+    "handle": "pioppino-grow-kit",
+    "weight": 1500,
+    "variants": [
+      {
+        "title": "1 kit",
+        "sku": "KIT-PIO",
+        "prices": [
+          { "amount": 4495, "currency_code": "usd" },
+          { "amount": 4495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grow-kit",
+      "intendedUse": ["beginner-grow", "intermediate-grow"],
+      "speciesSlug": "pioppino",
+      "tags": ["Umami", "All-in-one"],
+      "stock": "in_stock"
+    }
+  },
+  {
+    "title": "Blue Oyster Grow Kit",
+    "description": "All-in-one kit: inoculated substrate block, bag, and instructions. Fast-fruiting blue oysters in 1–2 weeks. Great for beginners.",
+    "handle": "blue-oyster-grow-kit",
+    "weight": 1500,
+    "variants": [
+      {
+        "title": "1 kit",
+        "sku": "KIT-BO",
+        "prices": [
+          { "amount": 4495, "currency_code": "usd" },
+          { "amount": 4495, "currency_code": "eur" }
+        ]
+      }
+    ],
+    "metadata": {
+      "category": "grow-kit",
+      "intendedUse": ["beginner-grow"],
+      "speciesSlug": "blue-oyster",
+      "tags": ["Beginner-friendly", "All-in-one"],
+      "stock": "in_stock"
+    }
+  }
+]

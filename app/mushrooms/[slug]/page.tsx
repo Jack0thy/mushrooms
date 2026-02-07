@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getSpeciesBySlug, species } from "@/data/species";
-import { getProductsBySpecies } from "@/data/products";
+import { getMedusaProducts, isMedusaConfigured } from "@/lib/medusa";
 import { MushroomDetail } from "@/components/mushrooms/mushroom-detail";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,6 +24,7 @@ export default async function MushroomDetailPage({ params }: Props) {
   const { slug } = await params;
   const s = getSpeciesBySlug(slug);
   if (!s) notFound();
-  const products = getProductsBySpecies(slug);
+  const allProducts = isMedusaConfigured() ? await getMedusaProducts() : [];
+  const products = allProducts.filter((p) => p.speciesSlug === slug);
   return <MushroomDetail species={s} products={products} />;
 }

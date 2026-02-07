@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MyceliumLines, SporeCircles, LabIcon, LocalPickupIcon } from "@/components/icons";
-import { products, getProductsByCategory } from "@/data/products";
+import type { Product } from "@/data/products";
 import { getFeaturedSpecies } from "@/data/species";
 import { formatPrice } from "@/lib/utils";
 import { HomeEmailCapture } from "@/components/home/email-capture";
@@ -14,10 +14,11 @@ import { HomeEmailCapture } from "@/components/home/email-capture";
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.06 } } };
 const item = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
-export function HomePageContent() {
-  const freshProducts = getProductsByCategory("fresh").slice(0, 4);
+export function HomePageContent({ products = [] }: { products?: Product[] }) {
+  const freshProducts = products.filter((p) => p.category === "fresh").slice(0, 4);
   const cultureSpawnProducts = products.filter((p) => p.category === "liquid-culture" || p.category === "grain-spawn").slice(0, 4);
   const featuredSpecies = getFeaturedSpecies();
+  const featuredProducts = [...freshProducts, ...cultureSpawnProducts].slice(0, 8);
 
   return (
     <div className="flex flex-col">
@@ -119,7 +120,7 @@ export function HomePageContent() {
           <h2 className="text-2xl font-semibold tracking-tight">Featured products</h2>
           <p className="mt-1 text-muted-foreground">Fresh mushrooms and cultivation supplies.</p>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[...freshProducts, ...cultureSpawnProducts].slice(0, 8).map((p) => (
+            {featuredProducts.map((p) => (
               <Card key={p.id} className="overflow-hidden transition-shadow hover:shadow-md">
                 <div className="aspect-[4/3] bg-muted flex items-center justify-center"><SporeCircles className="h-12 w-12 text-muted-foreground/50" /></div>
                 <CardHeader className="pb-2">
