@@ -113,3 +113,20 @@ PRODUCT_JSON='{"title":"Blue Oyster","handle":"blue-oyster","description":"...",
 ```
 
 Prerequisites: run `npm run seed` once so a shipping profile and sales channel exist.
+
+---
+
+## Add Canada shipping (no full seed)
+
+Adds a Canada-only fulfillment set and two shipping options (Standard 10 CAD, Express 20 CAD) without re-seeding products or other data.
+
+```bash
+npm run add-canada-shipping
+```
+
+Requires a region named **"Canada"** and at least one **stock location** (e.g. from an initial seed). If your DB uses different entity names for query, set optional env vars:
+
+- `REGION_ID` – Canada region ID (from Admin → Settings → Regions)
+- `STOCK_LOCATION_ID` – Any stock location ID (from Admin → Locations)
+
+Then set `NEXT_PUBLIC_MEDUSA_REGION_ID` in your storefront to the Canada region ID so checkout shows these options.

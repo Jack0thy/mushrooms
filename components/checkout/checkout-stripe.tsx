@@ -5,6 +5,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { completeCart } from "@/lib/medusa-store";
+import type { MedusaCart } from "@/lib/medusa-store";
+
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "pk_test_placeholder"
 );
@@ -12,10 +14,12 @@ const stripePromise = loadStripe(
 export function CheckoutStripe({
   cartId,
   clientSecret,
+  cart,
   onOrderPlaced,
 }: {
   cartId: string;
   clientSecret: string;
+  cart?: MedusaCart | null;
   onOrderPlaced: () => void;
 }) {
   return (
@@ -23,6 +27,7 @@ export function CheckoutStripe({
       <StripeForm
         cartId={cartId}
         clientSecret={clientSecret}
+        cart={cart}
         onOrderPlaced={onOrderPlaced}
       />
     </Elements>
@@ -32,16 +37,34 @@ export function CheckoutStripe({
 function StripeForm({
   cartId,
   clientSecret,
+  cart,
   onOrderPlaced,
 }: {
   cartId: string;
   clientSecret: string;
+  cart?: MedusaCart | null;
   onOrderPlaced: () => void;
 }) {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const billing = cart?.billing_address;
+  const billingDetails = billing
+    ? {
+        name: [billing.first_name, billing.last_name].filter(Boolean).join(" ") || undefined,
+        email: cart?.email || undefined,
+        phone: billing.phone || undefined,
+        address: {
+          city: billing.city || undefined,
+          country: billing.country_code || undefined,
+          line1: billing.address_1 || undefined,
+          line2: billing.address_2 || undefined,
+          postal_code: billing.postal_code || undefined,
+        },
+      }
+    : undefined;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -54,7 +77,10 @@ function StripeForm({
     setLoading(true);
     try {
       const { error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: { card },
+        payment_method: {
+          card,
+          billing_details: billingDetails,
+        },
       });
       if (confirmError) {
         const msg = confirmError.message ?? "Payment failed.";

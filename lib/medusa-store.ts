@@ -65,8 +65,15 @@ export async function addCartLineItem(
   }
 }
 
+export interface ShippingOption {
+  id: string;
+  name?: string;
+  /** Display amount in cents if present (flat price options) */
+  amount?: number;
+}
+
 /** List available shipping options for the cart. */
-export async function getShippingOptions(cartId: string): Promise<{ id: string; name?: string }[]> {
+export async function getShippingOptions(cartId: string): Promise<ShippingOption[]> {
   const res = await fetch(
     `${MEDUSA_BACKEND}/store/shipping-options?cart_id=${encodeURIComponent(cartId)}`,
     { headers: headers() }
@@ -76,7 +83,7 @@ export async function getShippingOptions(cartId: string): Promise<{ id: string; 
     throw new Error(`getShippingOptions failed: ${res.status} ${err}`);
   }
   const data = await res.json();
-  const list = Array.isArray(data) ? data : (data as { shipping_options?: { id: string; name?: string }[] }).shipping_options;
+  const list = Array.isArray(data) ? data : (data as { shipping_options?: ShippingOption[] }).shipping_options;
   return list ?? [];
 }
 
@@ -106,8 +113,28 @@ export async function getCartWithPayment(cartId: string): Promise<MedusaCart> {
   return data.cart;
 }
 
+export interface MedusaAddress {
+  first_name?: string;
+  last_name?: string;
+  address_1?: string;
+  address_2?: string;
+  company?: string;
+  postal_code?: string;
+  city?: string;
+  country_code?: string;
+  province?: string;
+  phone?: string;
+}
+
 export interface MedusaCart {
   id: string;
+  email?: string;
+  shipping_address?: MedusaAddress | null;
+  billing_address?: MedusaAddress | null;
+  region?: {
+    id: string;
+    countries?: Array<{ iso_2: string; display_name?: string }>;
+  };
   payment_collection?: {
     id: string;
     payment_sessions?: Array<{
@@ -115,6 +142,24 @@ export interface MedusaCart {
       data?: { client_secret?: string };
     }>;
   } | null;
+}
+
+/** Update cart (email, shipping_address, billing_address). */
+export async function updateCart(
+  cartId: string,
+  payload: { email?: string; shipping_address?: MedusaAddress; billing_address?: MedusaAddress }
+): Promise<{ id: string }> {
+  const res = await fetch(`${MEDUSA_BACKEND}/store/carts/${cartId}`, {
+    method: "POST",
+    headers: headers(),
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`updateCart failed: ${res.status} ${err}`);
+  }
+  const data = (await res.json()) as { cart: { id: string } };
+  return { id: data.cart.id };
 }
 
 /** Create a payment collection for the cart. */
