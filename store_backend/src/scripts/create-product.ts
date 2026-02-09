@@ -18,6 +18,28 @@ import type { ExecArgs } from "@medusajs/framework/types";
 import { ContainerRegistrationKeys, Modules, ProductStatus } from "@medusajs/framework/utils";
 import { createProductsWorkflow } from "@medusajs/medusa/core-flows";
 
+/** Shape expected by createProductsWorkflow input.products[]. */
+interface WorkflowProductInput {
+  title: string;
+  handle: string;
+  description?: string;
+  status: ProductStatus;
+  shipping_profile_id: string;
+  weight: number;
+  metadata?: Record<string, unknown>;
+  images?: { url: string }[];
+  options: { title: string; values: string[] }[];
+  variants: Array<{
+    title: string;
+    sku?: string;
+    options: Record<string, string>;
+    prices: { amount: number; currency_code: string }[];
+  }>;
+  sales_channels: { id: string }[];
+  subtitle?: string;
+  collection_id?: string;
+}
+
 /** Product spec that mirrors Store API / createProductsWorkflow (one product). */
 export interface ProductSpec {
   title: string;
@@ -98,11 +120,30 @@ function buildWorkflowProduct(
   spec: ProductSpec,
   shippingProfileId: string,
   salesChannelId: string
-): Record<string, unknown> {
+): WorkflowProductInput {
   const hasOptions = spec.options && spec.options.length > 0;
   const options = hasOptions ? spec.options! : [DEFAULT_OPTION];
 
-  const base: Record<string, unknown> = {
+  const variants = spec.variants?.length
+    ? spec.variants.map((v) => ({
+        title: v.title,
+        sku: v.sku ?? undefined,
+        options: v.options && Object.keys(v.options).length > 0 ? v.options : DEFAULT_VARIANT_OPTIONS,
+        prices: v.prices,
+      }))
+    : [
+        {
+          title: "Default",
+          sku: `${(spec.handle || "product").toUpperCase().replace(/-/g, "_")}_DEFAULT`,
+          options: DEFAULT_VARIANT_OPTIONS,
+          prices: [
+            { amount: 0, currency_code: "usd" },
+            { amount: 0, currency_code: "eur" },
+          ],
+        },
+      ];
+
+  const base: WorkflowProductInput = {
     title: spec.title,
     handle: spec.handle,
     description: spec.description ?? undefined,
@@ -112,7 +153,7 @@ function buildWorkflowProduct(
     metadata: spec.metadata ?? undefined,
     images: spec.images?.length ? spec.images : undefined,
     options,
-    variants: undefined as unknown,
+    variants,
     sales_channels: [{ id: salesChannelId }],
   };
   if (spec.subtitle != null && spec.subtitle !== "") {
@@ -120,26 +161,6 @@ function buildWorkflowProduct(
   }
   if (spec.collection_id) {
     base.collection_id = spec.collection_id;
-  }
-  if (spec.variants?.length) {
-    base.variants = spec.variants.map((v) => ({
-      title: v.title,
-      sku: v.sku ?? undefined,
-      options: v.options && Object.keys(v.options).length > 0 ? v.options : DEFAULT_VARIANT_OPTIONS,
-      prices: v.prices,
-    }));
-  } else {
-    base.variants = [
-      {
-        title: "Default",
-        sku: `${(spec.handle || "product").toUpperCase().replace(/-/g, "_")}_DEFAULT`,
-        options: DEFAULT_VARIANT_OPTIONS,
-        prices: [
-          { amount: 0, currency_code: "usd" },
-          { amount: 0, currency_code: "eur" },
-        ],
-      },
-    ];
   }
   return base;
 }
@@ -213,7 +234,9 @@ export default async function createProduct({ container, args = [] }: ExecArgs) 
   }
 
   const specs: ProductSpec[] = isBatch(specOrBatch) ? specOrBatch : [specOrBatch];
-  const productInputs = specs.map((s) => buildWorkflowProduct(s, shippingProfile.id, defaultChannel.id));
+  const productInputs: WorkflowProductInput[] = specs.map((s) =>
+    buildWorkflowProduct(s, shippingProfile.id, defaultChannel.id)
+  );
   const { result } = await createProductsWorkflow(container).run({
     input: { products: productInputs },
   });
