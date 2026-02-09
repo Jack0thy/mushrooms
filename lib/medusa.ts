@@ -115,6 +115,13 @@ export async function getMedusaProducts(): Promise<Product[]> {
     console.warn("[medusa] NEXT_PUBLIC_MEDUSA_BACKEND_URL must be a full URL (e.g. http://localhost:9000)");
     return [];
   }
+  // During production build, skip fetch when backend is localhost (not running), so build doesn't log ECONNREFUSED.
+  if (
+    process.env.NODE_ENV === "production" &&
+    (base.includes("localhost") || base.includes("127.0.0.1"))
+  ) {
+    return [];
+  }
   const params = new URLSearchParams({
     fields:
       "*variants.calculated_price,*variants.id,*variants.title,id,title,handle,description,metadata,*collection",
