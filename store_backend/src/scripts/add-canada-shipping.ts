@@ -75,7 +75,7 @@ export default async function addCanadaShipping({ container }: ExecArgs) {
       entity: "product",
       fields: ["shipping_profile_id"],
     });
-    const first = (products as { shipping_profile_id: string }[] | undefined)?.[0];
+    const first = (products as unknown as { shipping_profile_id: string }[] | undefined)?.[0];
     if (first?.shipping_profile_id) {
       shippingProfileId = first.shipping_profile_id;
       logger.info("Using shipping profile from existing product: " + shippingProfileId);

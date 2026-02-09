@@ -37,9 +37,9 @@ export function HomePageContent({ products = [] }: { products?: Product[] }) {
 
   return (
     <div className="flex flex-col">
-      {/* Hero */}
+      {/* Who we are + options — one core writeup */}
       <section className="relative overflow-hidden bg-gradient-to-b from-muted/40 to-background">
-        <div className="container relative mx-auto max-w-4xl px-4 pt-24 pb-20 text-center md:pt-32 md:pb-28">
+        <div className="container relative mx-auto max-w-2xl px-4 pt-24 pb-20 text-center md:pt-32 md:pb-24">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -48,71 +48,34 @@ export function HomePageContent({ products = [] }: { products?: Product[] }) {
             <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
               Craft-grown gourmet mushrooms, locally.
             </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Fresh harvests for your kitchen, liquid cultures and grain spawn for growers. Local pickup and delivery available. Small-batch, lab-minded, with guides to help you cook and cultivate.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <div className="mx-auto mt-8 max-w-xl space-y-5 text-lg leading-relaxed text-muted-foreground">
+              <p>
+                We grow premium mushrooms for your kitchen and supply liquid cultures and grain spawn for growers. Local pickup and delivery available. Small-batch, lab-minded, with guides to help you cook and cultivate.
+              </p>
+              <p>
+                Want a steady supply? Our <strong className="font-medium text-foreground">weekly delivery</strong> works like a CSA for mushrooms: a share of fresh, seasonal varieties delivered to you. Skip or opt out anytime—no commitment.
+              </p>
+            </div>
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg">
                 <Link href="/shop">Shop</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link href="/shop#grow-supplies">Cultures & spawn</Link>
               </Button>
-              <Link
-                href="/learn"
-                className="ml-2 text-sm font-medium text-primary underline-offset-4 hover:underline"
-              >
-                Learn to grow
-              </Link>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/learn">Learn to grow</Link>
+              </Button>
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/contact?interest=weekly-delivery">
+                  Weekly delivery — get on the list
+                </Link>
+              </Button>
             </div>
           </motion.div>
           <div className="absolute bottom-6 left-0 right-0 flex justify-center opacity-20">
             <MyceliumLines className="h-6 w-28" />
           </div>
-        </div>
-      </section>
-
-      {/* Weekly delivery — flagship offer */}
-      <section className="border-y border-border bg-primary/8">
-        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-20">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={stagger}
-            className="text-center"
-          >
-            <motion.div variants={fadeUp}>
-              <Badge variant="secondary" className="mb-4">
-                New
-              </Badge>
-            </motion.div>
-            <motion.h2
-              variants={fadeUp}
-              className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl"
-            >
-              Weekly mushroom delivery
-            </motion.h2>
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-4 max-w-lg text-muted-foreground md:text-lg"
-            >
-              Like a CSA for mushrooms. A weekly share of fresh, seasonal varieties delivered to you. Skip or opt out anytime—no commitment.
-            </motion.p>
-            <motion.div
-              variants={fadeUp}
-              className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
-            >
-              <span>Weekly delivery</span>
-              <span>Opt out anytime</span>
-              <span>Seasonal variety</span>
-            </motion.div>
-            <motion.div variants={fadeUp} className="mt-8">
-              <Button asChild size="lg">
-                <Link href="/contact?interest=weekly-delivery">Get on the list</Link>
-              </Button>
-            </motion.div>
-          </motion.div>
         </div>
       </section>
 
