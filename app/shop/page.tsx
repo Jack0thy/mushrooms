@@ -1,15 +1,17 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import { ShopClient } from "@/components/shop/shop-client";
-import { products, categories, intendedUseOptions } from "@/data/products";
+import { categories, intendedUseOptions } from "@/data/products";
 import { species } from "@/data/species";
+import { getMedusaProducts, isMedusaConfigured } from "@/lib/medusa";
 
 export const metadata: Metadata = {
   title: "Shop",
   description: "Fresh gourmet mushrooms, liquid cultures, grain spawn, and grow kits. Local pickup and shipping.",
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const products = isMedusaConfigured() ? await getMedusaProducts() : [];
   return (
     <Suspense fallback={<div className="container mx-auto min-h-[40vh] px-4 py-8" />}>
       <ShopClient
