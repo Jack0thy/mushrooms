@@ -111,6 +111,10 @@ function medusaProductToProduct(m: MedusaProduct): Product {
 export async function getMedusaProducts(): Promise<Product[]> {
   if (!isMedusaConfigured()) return [];
   const base = MEDUSA_BACKEND!.replace(/\/$/, "");
+  if (!base.startsWith("http")) {
+    console.warn("[medusa] NEXT_PUBLIC_MEDUSA_BACKEND_URL must be a full URL (e.g. http://localhost:9000)");
+    return [];
+  }
   const params = new URLSearchParams({
     fields:
       "*variants.calculated_price,*variants.id,*variants.title,id,title,handle,description,metadata,*collection",
@@ -121,14 +125,19 @@ export async function getMedusaProducts(): Promise<Product[]> {
     params.set("country_code", "ca");
   }
   const url = `${base}/store/products?${params.toString()}`;
-  const res = await fetch(url, {
-    headers: {
-      "x-publishable-api-key": MEDUSA_PUBLISHABLE_KEY!,
-    },
-    next: { revalidate: 60 },
-  });
-  if (!res.ok) return [];
-  const data = (await res.json()) as MedusaProductsResponse;
-  const products = data.products ?? [];
-  return products.map(medusaProductToProduct);
+  try {
+    const res = await fetch(url, {
+      headers: {
+        "x-publishable-api-key": MEDUSA_PUBLISHABLE_KEY!,
+      },
+      next: { revalidate: 60 },
+    });
+    if (!res.ok) return [];
+    const data = (await res.json()) as MedusaProductsResponse;
+    const products = data.products ?? [];
+    return products.map(medusaProductToProduct);
+  } catch (err) {
+    console.warn("[medusa] Failed to fetch products:", err instanceof Error ? err.message : err);
+    return [];
+  }
 }
