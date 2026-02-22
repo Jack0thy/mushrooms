@@ -1,47 +1,50 @@
 import { Metadata } from "next";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { SporeCircles } from "@/components/icons";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Cedar Roots Mushrooms: local food, mycology craft, lab-minded cleanliness.",
+  description: "Ever Again Mushrooms: make cooking feel new again. Small-batch cultivation, calm education, resilience.",
 };
-
-const values = [
-  { title: "Craft", body: "We grow in small batches with attention to quality and consistency." },
-  { title: "Science", body: "Our cultures and spawn are prepared in a clean environment. We follow sterile technique." },
-  { title: "Soil", body: "We are rooted in place—local food, local pickup, sustainable growing." },
-  { title: "Local", body: "We serve our community first. Pickup in Madawaska and surrounding areas." },
-];
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl font-semibold tracking-tight">About Cedar Roots</h1>
-      <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
-        Cedar Roots Mushrooms is a local gourmet mushroom farm. We sell fresh mushrooms for the kitchen, and liquid cultures and grain spawn for growers. We emphasize cleanliness, reliability, and education.
-      </p>
-      <section className="mt-16">
-        <h2 className="text-xl font-semibold">Values</h2>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map((v) => (
-            <Card key={v.title} className="h-full">
-              <CardHeader>
-                <CardTitle className="text-base">{v.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">{v.body}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+    <div className="container mx-auto max-w-2xl px-4 py-16 md:py-22">
+      <h1 className="font-serif text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+        About
+      </h1>
+
+      <section className="mt-10 space-y-6 text-muted-foreground leading-relaxed">
+        <p>
+          Ever Again Mushrooms exists to make cooking feel new again. We grow gourmet mushrooms in small batches, handle them with care, and offer calm, practical education so you can rediscover what’s possible in the kitchen.
+        </p>
+        <p>
+          Good cooking is something you rediscover again and again. We’re here for that—for curious kitchens and for growers who want precision without the noise.
+        </p>
       </section>
-      <section className="mt-16">
-        <div className="aspect-[2/1] max-w-3xl rounded-lg border bg-muted flex items-center justify-center">
-          <SporeCircles className="h-20 w-20 text-muted-foreground/40" />
-        </div>
-        <p className="mt-2 text-center text-xs text-muted-foreground">Photo placeholder.</p>
+
+      <section className="mt-14">
+        <h2 className="font-serif text-xl font-semibold text-foreground">The method</h2>
+        <p className="mt-3 text-muted-foreground leading-relaxed">
+          Small-batch cultivation. Careful handling. No hype. We sell fresh mushrooms for the kitchen and, for growers, liquid cultures and grain spawn—prepared in a clean environment, with clear documentation. We also write guides: cooking, storage, and cultivation basics. Education is part of the offer.
+        </p>
       </section>
+
+      <section className="mt-14">
+        <h2 className="font-serif text-xl font-semibold text-foreground">The value</h2>
+        <p className="mt-3 text-muted-foreground leading-relaxed">
+          Resilience and curiosity. We’re rooted in place—Ottawa Valley—with local pickup and weekly delivery where we can. We serve our community first. The brand is quiet by design: no rustic clichés, no lab aesthetic. Just a calm invitation to cook something new again.
+        </p>
+      </section>
+
+      <div className="mt-14 flex flex-wrap gap-3">
+        <Button asChild>
+          <Link href="/shop">Shop Fresh</Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/contact">Contact</Link>
+        </Button>
+      </div>
     </div>
   );
 }

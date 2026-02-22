@@ -38,7 +38,13 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+      },
+      spacing: {
+        "18": "4.5rem",
+        "22": "5.5rem",
+        "30": "7.5rem",
       },
     },
   },

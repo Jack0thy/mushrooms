@@ -36,9 +36,9 @@ export function ContactForm({ className }: { className?: string }) {
 
   if (status === "success") {
     return (
-      <div className="rounded-lg border border-green-200 bg-green-50 p-6 text-green-800 dark:border-green-800 dark:bg-green-950/30 dark:text-green-200">
-        <p className="font-medium">Message sent.</p>
-        <p className="mt-1 text-sm">We’ll get back to you as soon as we can.</p>
+      <div className="rounded-lg border border-border/80 bg-muted/30 p-6">
+        <p className="font-medium text-foreground">Message sent.</p>
+        <p className="mt-1 text-sm text-muted-foreground">We’ll get back to you as soon as we can.</p>
       </div>
     );
   }

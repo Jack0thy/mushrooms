@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -12,8 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/data/products";
+import { getSpeciesBySlug } from "@/data/species";
 import { useCart } from "@/components/cart/cart-provider";
-import { SporeCircles } from "@/components/icons";
 
 interface ProductDetailSheetProps {
   product: Product;
@@ -32,16 +33,17 @@ export function ProductDetailSheet({ product, open, onOpenChange }: ProductDetai
   }, [open, hasVariants, product.variants]);
   const displayPrice = selectedVariant ? selectedVariant.price : product.price;
   const variantIdForCart = selectedVariant ? selectedVariant.id : product.variantId;
+  const species = product.speciesSlug ? getSpeciesBySlug(product.speciesSlug) : undefined;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg border-border/80">
         <DialogHeader>
-          <DialogTitle>{product.name}</DialogTitle>
+          <DialogTitle className="font-serif text-xl">{product.name}</DialogTitle>
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
-        <div className="aspect-[4/3] w-full bg-muted rounded-md flex items-center justify-center my-4">
-          <SporeCircles className="h-16 w-16 text-muted-foreground/50" />
+        <div className="aspect-[4/3] w-full rounded-md flex items-center justify-center my-4 bg-muted/20 text-muted-foreground/40">
+          <span className="text-xs uppercase tracking-wider">Product</span>
         </div>
         {hasVariants && (
           <div className="mb-4">
@@ -55,7 +57,7 @@ export function ProductDetailSheet({ product, open, onOpenChange }: ProductDetai
                 const v = product.variants!.find((x) => x.id === e.target.value);
                 if (v) setSelectedVariant(v);
               }}
-              className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {product.variants!.map((v) => (
                 <option key={v.id} value={v.id}>
@@ -65,28 +67,52 @@ export function ProductDetailSheet({ product, open, onOpenChange }: ProductDetai
             </select>
           </div>
         )}
-        <p className="text-lg font-semibold">{formatPrice(displayPrice)}</p>
-        {product.storageNotes && (
+        <p className="text-lg font-semibold text-foreground">{formatPrice(displayPrice)}</p>
+
+        {species && (
           <>
-            <Separator />
+            <Separator className="my-4" />
             <div>
-              <p className="text-sm font-medium">Storage & care</p>
-              <p className="text-sm text-muted-foreground">{product.storageNotes}</p>
+              <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                How to cook it
+              </h3>
+              <p className="mt-2 text-sm text-foreground">
+                {species.cookingSuggestions[0] ?? species.bestForCooking}
+              </p>
+              <Link
+                href={"/mushrooms/" + species.slug}
+                className="mt-2 inline-block text-sm text-primary underline-offset-4 hover:underline"
+              >
+                Full species guide →
+              </Link>
             </div>
           </>
         )}
+
+        <Separator className="my-4" />
+        <div>
+          <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Storage
+          </h3>
+          <p className="mt-2 text-sm text-foreground">
+            {product.storageNotes ?? (species ? species.storageLifeFridge : "Keep refrigerated in a paper bag. Use within 5–7 days.")}
+          </p>
+        </div>
+
         {product.labNotes && (
           <>
-            <Separator />
+            <Separator className="my-4" />
             <div>
-              <p className="text-sm font-medium">Lab notes</p>
-              <p className="text-sm text-muted-foreground">{product.labNotes}</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Lab notes
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">{product.labNotes}</p>
             </div>
           </>
         )}
         {product.shippingPickupNotes && (
           <>
-            <Separator />
+            <Separator className="my-4" />
             <p className="text-sm text-muted-foreground">{product.shippingPickupNotes}</p>
           </>
         )}
