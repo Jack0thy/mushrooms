@@ -4,22 +4,22 @@ import { SporeCircles } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Cedar Roots Mushrooms: local food, mycology craft, lab-minded cleanliness.",
+  description: "Ever Again Mushrooms: small-batch mushrooms, lab-minded cultivation, quiet attention.",
 };
 
 const values = [
   { title: "Craft", body: "We grow in small batches with attention to quality and consistency." },
   { title: "Science", body: "Our cultures and spawn are prepared in a clean environment. We follow sterile technique." },
   { title: "Soil", body: "We are rooted in place—local food, local pickup, sustainable growing." },
-  { title: "Local", body: "We serve our community first. Pickup in Madawaska and surrounding areas." },
+  { title: "Local", body: "We serve our community first. Pickup in Pembroke; weekly delivery in the Ottawa Valley." },
 ];
 
 export default function AboutPage() {
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl font-semibold tracking-tight">About Cedar Roots</h1>
-      <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
-        Cedar Roots Mushrooms is a local gourmet mushroom farm. We sell fresh mushrooms for the kitchen, and liquid cultures and grain spawn for growers. We emphasize cleanliness, reliability, and education.
+      <h1 className="font-serif text-3xl font-medium tracking-tight">About Ever Again</h1>
+      <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+        Ever Again Mushrooms is a small-batch mushroom grower. We sell fresh mushrooms for the kitchen and liquid cultures and grain spawn for growers. We emphasize quiet attention, cleanliness, and education.
       </p>
       <section className="mt-16">
         <h2 className="text-xl font-semibold">Values</h2>

@@ -14,18 +14,18 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/shop", label: "Shop" },
   { href: "/mushrooms", label: "Mushrooms" },
-  { href: "/shop#grow-supplies", label: "Grow Supplies" },
+  { href: "/shop#grow-supplies", label: "Cultures & Spawn" },
   { href: "/learn", label: "Learn" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
-  const pathname = usePathname();
-  const { itemCount, openCart } = useCart();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const pathname = usePathname();
+  const { itemCount, openCart } = useCart();
 
   useEffect(() => setMounted(true), []);
 
@@ -49,7 +49,7 @@ export function Header() {
                 <nav className="mt-6 flex flex-col gap-1" aria-label="Main navigation">
                   {navItems.map(({ href, label }) => (
                     <Link
-                      key={href}
+                      key={href + label}
                       href={href}
                       onClick={() => setMobileNavOpen(false)}
                       className={cn(
@@ -65,23 +65,23 @@ export function Header() {
                     onClick={() => setMobileNavOpen(false)}
                     className="mt-4 block rounded-md bg-primary px-3 py-2.5 text-center text-sm font-semibold text-primary-foreground hover:bg-primary/90"
                   >
-                    Shop Fresh
+                    Shop
                   </Link>
                 </nav>
               </SheetContent>
             </Sheet>
-            <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
-              Cedar Roots
+            <Link href="/" className="flex items-center gap-2 font-serif text-lg font-medium text-foreground">
+              Ever Again
             </Link>
           </div>
           <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
             {navItems.map(({ href, label }) => (
               <Link
-                key={href}
+                key={href + label}
                 href={href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === href ? "text-primary" : "text-muted-foreground"
+                  "text-sm font-medium transition-colors hover:text-foreground",
+                  pathname === href ? "text-foreground" : "text-muted-foreground"
                 )}
               >
                 {label}
@@ -112,8 +112,8 @@ export function Header() {
                 </span>
               )}
             </button>
-            <Button asChild className="hidden sm:inline-flex">
-              <Link href="/shop">Shop Fresh</Link>
+            <Button asChild className="hidden sm:inline-flex" size="sm">
+              <Link href="/shop">Shop</Link>
             </Button>
           </div>
         </div>

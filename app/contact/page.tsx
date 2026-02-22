@@ -4,7 +4,7 @@ import { LocalPickupIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Cedar Roots Mushrooms.",
+  description: "Get in touch with Ever Again Mushrooms.",
 };
 
 export default function ContactPage() {
@@ -15,10 +15,10 @@ export default function ContactPage() {
       <ContactForm className="mt-10" />
       <div className="mt-12 space-y-6 rounded-lg border bg-muted/30 p-6 text-sm text-muted-foreground">
         <p className="font-medium text-foreground">Placeholders</p>
-        <p>Email: info@cedarrootsmushrooms.com</p>
+        <p>Email: info@everagainmushrooms.com</p>
         <p className="flex items-center gap-2">
           <LocalPickupIcon className="h-4 w-4" />
-          Pickup: Madawaska, Maine (by appointment)
+          Pickup: Pembroke; weekly delivery in the Ottawa Valley.
         </p>
         <p>Hours: TBD. Wholesale inquiries welcome.</p>
       </div>

@@ -1,12 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { formatPrice } from "@/lib/utils";
-import type { Product } from "@/data/products";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { SporeCircles } from "@/components/icons";
 import { useCart } from "@/components/cart/cart-provider";
+import { formatPrice } from "@/lib/utils";
+import type { Product } from "@/data/products";
 import { ProductDetailSheet } from "./product-detail-sheet";
 import { useState } from "react";
 

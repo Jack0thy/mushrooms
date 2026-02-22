@@ -1,25 +1,33 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CartProvider } from "@/components/cart/cart-provider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-geist-sans" });
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "Cedar Roots Mushrooms | Local Gourmet Mushrooms & Cultivation",
-    template: "%s | Cedar Roots Mushrooms",
+    default: "Ever Again Mushrooms | Cooking feels new again",
+    template: "%s | Ever Again Mushrooms",
   },
   description:
-    "Local, craft-grown gourmet mushrooms. Fresh mushrooms for cooking, liquid cultures and grain spawn for growers, and guides to help you succeed. Madawaska, Maine.",
+    "Small-batch mushrooms and cultivation supplies. For the kitchen, the lab, and the curious. Ottawa Valley.",
   openGraph: {
     type: "website",
     locale: "en_US",
   },
-  metadataBase: new URL("https://cedarrootsmushrooms.com"),
+  metadataBase: new URL("https://everagainmushrooms.com"),
 };
 
 export default function RootLayout({
@@ -29,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.variable + " font-sans min-h-screen flex flex-col"}>
+      <body className={`${sourceSans.variable} ${sourceSerif.variable} font-sans min-h-screen flex flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <CartProvider>
             <Header />

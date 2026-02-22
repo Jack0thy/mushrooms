@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { SporeCircles } from "@/components/icons";
-import type { Species } from "@/data/species";
 import type { Product } from "@/data/products";
+import type { Species } from "@/data/species";
 
 const difficultyLabels = ["", "Easy", "Moderate", "Moderate+", "Advanced", "Expert"];
 const yieldLabels = { low: "Low", medium: "Medium", high: "High" };
@@ -109,7 +109,25 @@ export function MushroomDetail({
           <p className="mt-2 text-muted-foreground leading-relaxed">{species.storageAndHandling}</p>
         </section>
         <section>
-          <h2 className="text-xl font-semibold">Why Cedar Roots grows it</h2>
+          <h2 className="text-xl font-semibold">Why we grow it</h2>
+          <p className="mt-2 text-muted-foreground leading-relaxed">{species.whyWeGrowIt}</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-semibold">Pairs well with</h2>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {species.pairsWellWith.map((item) => (
+              <Badge key={item} variant="secondary">
+                {item}
+              </Badge>
+            ))}
+          </div>
+        </section>
+        <section>
+          <h2 className="text-xl font-semibold">Storage & handling</h2>
+          <p className="mt-2 text-muted-foreground leading-relaxed">{species.storageAndHandling}</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-semibold">Why we grow it</h2>
           <p className="mt-2 text-muted-foreground leading-relaxed">{species.whyWeGrowIt}</p>
         </section>
         <section>

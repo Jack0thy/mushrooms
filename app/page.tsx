@@ -3,9 +3,9 @@ import { HomePageContent } from "@/components/home/home-page-content";
 import { getMedusaProducts, isMedusaConfigured } from "@/lib/medusa";
 
 export const metadata: Metadata = {
-  title: "Cedar Roots Mushrooms | Local Gourmet Mushrooms & Cultivation",
+  title: "Ever Again Mushrooms | Cooking feels new again",
   description:
-    "Local, craft-grown gourmet mushrooms. Fresh mushrooms for cooking, liquid cultures and grain spawn for growers. Madawaska, Maine.",
+    "Small-batch mushrooms and cultivation supplies. For the kitchen, the lab, and the curious. Ottawa Valley.",
 };
 
 export default async function HomePage() {
