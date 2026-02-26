@@ -1,30 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MyceliumLines, SporeCircles, LabIcon, LocalPickupIcon } from "@/components/icons";
 import type { Product } from "@/data/products";
 import { getFeaturedSpecies } from "@/data/species";
 import { formatPrice } from "@/lib/utils";
 import { HomeEmailCapture } from "@/components/home/email-capture";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
-const stagger = {
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-      {children}
-    </p>
-  );
+function stockBadgeLabel(stock: Product["stock"]): string {
+  switch (stock) {
+    case "in_stock":
+      return "In stock";
+    case "limited":
+      return "Limited";
+    case "out":
+      return "Back next week";
+    default:
+      return "In stock";
+  }
 }
 
 export function HomePageContent({ products = [] }: { products?: Product[] }) {
@@ -37,314 +30,221 @@ export function HomePageContent({ products = [] }: { products?: Product[] }) {
 
   return (
     <div className="flex flex-col">
-      {/* Who we are + options — one core writeup */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-muted/40 to-background">
-        <div className="container relative mx-auto max-w-2xl px-4 pt-24 pb-20 text-center md:pt-32 md:pb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              Craft-grown gourmet mushrooms, locally.
-            </h1>
-            <div className="mx-auto mt-8 max-w-xl space-y-5 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                We grow premium mushrooms for your kitchen and supply liquid cultures and grain spawn for growers. Local pickup and delivery available. Small-batch, lab-minded, with guides to help you cook and cultivate.
-              </p>
-              <p>
-                Want a steady supply? Our <strong className="font-medium text-foreground">weekly delivery</strong> works like a CSA for mushrooms: a share of fresh, seasonal varieties delivered to you. Skip or opt out anytime—no commitment.
-              </p>
-            </div>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-              <Button asChild size="lg">
-                <Link href="/shop">Shop</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/shop#grow-supplies">Cultures & spawn</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/learn">Learn to grow</Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/contact?interest=weekly-delivery">
-                  Weekly delivery — get on the list
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center opacity-20">
-            <MyceliumLines className="h-6 w-28" />
+      {/* 1) Hero — quiet, one thesis, primary + secondary CTA */}
+      <section className="border-b border-border/80">
+   
+        <div className="container mx-auto max-w-2xl px-4 py-24 text-center md:py-32">
+          <h1 className="font-serif text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+            Cedar Roots Mushrooms
+          </h1>
+          <p className="mt-6 text-lg text-muted-foreground">
+            Gourmet mushrooms and growing supplies.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <Button asChild size="lg" className="font-medium">
+              <Link href="/shop">Shop Fresh</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="font-medium">
+              <Link href="/mushrooms">Explore Species</Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* What we offer — three pillars */}
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={stagger}
-            className="text-center"
-          >
-            <motion.div variants={fadeUp}>
-              <SectionLabel>What we offer</SectionLabel>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-                For the kitchen, the lab, and the curious
-              </h2>
-              <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-                Fresh mushrooms, cultivation supplies, and guides to help you succeed.
-              </p>
-            </motion.div>
-          </motion.div>
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-40px" }}
-            className="mt-12 grid gap-6 md:grid-cols-3"
-          >
-            <motion.div variants={fadeUp}>
-              <Card className="h-full border-border/80 bg-card transition-colors hover:border-primary/20 hover:shadow-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-lg font-medium">For the kitchen</CardTitle>
-                  <CardDescription className="leading-relaxed">
-                    Fresh mushrooms for cooking. Small-batch harvests, local pickup or delivery.
-                  </CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="/shop?category=fresh">Shop fresh</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-            <motion.div variants={fadeUp}>
-              <Card className="h-full border-border/80 bg-card transition-colors hover:border-primary/20 hover:shadow-sm">
-                <CardHeader className="pb-4">
-                  <div className="mb-1 flex items-center gap-2">
-                    <LabIcon className="h-4 w-4 text-muted-foreground" />
-                    <CardTitle className="text-lg font-medium">For growers</CardTitle>
-                  </div>
-                  <CardDescription className="leading-relaxed">
-                    Liquid cultures and grain spawn. Lab-prepared, contamination-tested. Ship or local pickup.
-                  </CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="/shop#grow-supplies">Shop cultures & spawn</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-            <motion.div variants={fadeUp}>
-              <Card className="h-full border-border/80 bg-card transition-colors hover:border-primary/20 hover:shadow-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-lg font-medium">For learners</CardTitle>
-                  <CardDescription className="leading-relaxed">
-                    Guides on cultivation basics, troubleshooting, and cooking.
-                  </CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="/learn">Learn to grow</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          </motion.div>
+      {/* 2) Micro-proof line */}
+      <section className="border-b border-border/80 py-4">
+        <div className="container mx-auto max-w-3xl px-4 text-center">
+          <p className="text-xs text-muted-foreground">
+            Weekly harvest drops · Limited quantities · Local pickup & delivery
+          </p>
         </div>
       </section>
 
-      {/* Our species */}
-      <section className="border-t border-border bg-muted/20 py-20 md:py-28">
-        <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp}>
-              <SectionLabel>Our species</SectionLabel>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-                Meet the mushrooms we grow
-              </h2>
-              <p className="mt-2 text-muted-foreground">
-                Premium varieties for cooking and cultivation.
-              </p>
-            </motion.div>
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-40px" }}
-              className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+      {/* 3) What we offer — Kitchen, Learn, Growers */}
+      <section className="border-b border-border/80 py-20 md:py-28">
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2 className="font-serif text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+            What we offer
+          </h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <Link
+              href="/shop"
+              className="group flex flex-col rounded-lg border border-border/80 bg-card p-6 transition-colors hover:border-primary/30 hover:bg-muted/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {featuredSpecies.map((s) => (
-                <motion.div key={s.slug} variants={fadeUp}>
-                  <Card className="h-full overflow-hidden border-border/80 bg-card transition-colors hover:border-primary/20 hover:shadow-sm">
-                    <div className="aspect-[4/3] flex items-center justify-center bg-muted/60">
-                      <SporeCircles className="h-14 w-14 text-muted-foreground/50" />
-                    </div>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base font-medium">{s.name}</CardTitle>
-                      <CardDescription className="line-clamp-2 text-sm">{s.tagline}</CardDescription>
-                    </CardHeader>
-                    <CardFooter className="pt-0">
-                      <Button asChild variant="outline" size="sm">
-                        <Link href={"/mushrooms/" + s.slug}>View species</Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+              <span className="font-serif text-lg font-semibold text-foreground group-hover:text-primary">
+                For the kitchen
+              </span>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Fresh mushrooms for curious kitchens. Small-batch, weekly harvests.
+              </p>
+              <span className="mt-4 text-sm font-medium text-primary">Shop Fresh →</span>
+            </Link>
+            <Link
+              href="/learn"
+              className="flex flex-col rounded-lg border border-border/80 bg-card p-6 transition-colors hover:border-border hover:bg-muted/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <span className="font-serif text-lg font-semibold text-foreground">Learn</span>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Guides for cooking and storage. Start here.
+              </p>
+              <span className="mt-4 text-sm text-muted-foreground">Explore →</span>
+            </Link>
+            <Link
+              href="/shop#grow-supplies"
+              className="flex flex-col rounded-lg border border-border/80 bg-card p-6 transition-colors hover:border-border hover:bg-muted/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <span className="font-serif text-lg font-semibold text-foreground">For growers</span>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Liquid cultures and grain spawn. Precise, trustworthy.
+              </p>
+              <span className="mt-4 text-sm text-muted-foreground">Grow Supplies →</span>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Featured products */}
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp}>
-              <SectionLabel>From the farm</SectionLabel>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-                Featured products
-              </h2>
-              <p className="mt-2 text-muted-foreground">
-                Fresh harvests and cultivation supplies.
-              </p>
-            </motion.div>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {featuredProducts.map((p) => (
-                <Card
-                  key={p.id}
-                  className="overflow-hidden border-border/80 bg-card transition-colors hover:border-primary/20 hover:shadow-sm"
-                >
-                  <div className="aspect-[4/3] flex items-center justify-center bg-muted/60">
-                    <SporeCircles className="h-12 w-12 text-muted-foreground/40" />
+      {/* 4) Featured species — editorial grid, large placeholders, sensory descriptors */}
+      <section className="border-b border-border/80 py-20 md:py-28">
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2 className="font-serif text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+            Species we grow
+          </h2>
+          <p className="mt-2 text-muted-foreground">
+            Each with its own character. Explore taste, texture, and best uses.
+          </p>
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredSpecies.map((s) => (
+              <Link
+                key={s.slug}
+                href={"/mushrooms/" + s.slug}
+                className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg"
+              >
+                <div className="aspect-[4/3] overflow-hidden rounded-lg border border-border/80 bg-muted/30">
+                  <div className="flex h-full w-full items-center justify-center bg-muted/50 text-muted-foreground/40">
+                    <span className="text-xs uppercase tracking-wider">Photo</span>
                   </div>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base font-medium">{p.name}</CardTitle>
-                    <CardDescription className="line-clamp-2 text-sm">{p.description}</CardDescription>
-                    {p.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1 pt-2">
-                        {p.tags.slice(0, 2).map((t) => (
-                          <Badge key={t} variant="secondary" className="text-xs">
-                            {t}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                  </CardHeader>
-                  <CardFooter className="flex items-center justify-between">
-                    <span className="font-medium">{formatPrice(p.price)}</span>
-                    <Button asChild size="sm">
+                </div>
+                <h3 className="mt-4 font-serif text-lg font-semibold text-foreground group-hover:text-primary">
+                  {s.name}
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                  {s.tagline}
+                </p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline">
+              <Link href="/mushrooms">View all species</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) Featured products — clean grid, tags (Meaty, Delicate, Umami etc.) */}
+      <section className="border-b border-border/80 py-20 md:py-28">
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2 className="font-serif text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+            Available this week
+          </h2>
+          <p className="mt-2 text-muted-foreground">
+            Fresh and grow-at-home. Tags below suggest character.
+          </p>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredProducts.map((p) => (
+              <div
+                key={p.id}
+                className="flex flex-col rounded-lg border border-border/80 bg-card overflow-hidden"
+              >
+                <div className="aspect-[4/3] flex items-center justify-center bg-muted/30 text-muted-foreground/40">
+                  <span className="text-xs uppercase tracking-wider">Product</span>
+                </div>
+                <div className="flex flex-1 flex-col p-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-medium text-foreground">{p.name}</h3>
+                    <span className="shrink-0 rounded border border-border/80 px-2 py-0.5 text-xs text-muted-foreground">
+                      {stockBadgeLabel(p.stock)}
+                    </span>
+                  </div>
+                  {p.tags.length > 0 && (
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {p.tags.slice(0, 3).join(" · ")}
+                    </p>
+                  )}
+                  <p className="mt-2 font-medium">{formatPrice(p.price)}</p>
+                  <div className="mt-auto pt-4">
+                    <Button asChild size="sm" variant="outline" className="w-full">
                       <Link href={"/shop?highlight=" + p.slug}>View</Link>
                     </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Button asChild>
-                <Link href="/shop">View all products</Link>
-              </Button>
-            </div>
-          </motion.div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Button asChild>
+              <Link href="/shop">View all products</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="border-t border-border bg-muted/20 py-20 md:py-28">
-        <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp} className="text-center">
-              <SectionLabel>How it works</SectionLabel>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-                Simple, local, reliable
-              </h2>
-            </motion.div>
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-40px" }}
-              className="mt-14 grid gap-12 md:grid-cols-3"
-            >
-              <motion.div variants={fadeUp} className="text-center md:text-left">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-sm font-semibold text-primary">
-                  1
-                </span>
-                <h3 className="mt-4 font-semibold text-foreground">Choose what you want</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Browse fresh species and cultivation supplies. Add to cart.
-                </p>
-              </motion.div>
-              <motion.div variants={fadeUp} className="text-center md:text-left">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-sm font-semibold text-primary">
-                  2
-                </span>
-                <h3 className="mt-4 font-semibold text-foreground">Pickup or delivery</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Select a pickup window or local delivery at checkout.
-                </p>
-              </motion.div>
-              <motion.div variants={fadeUp} className="text-center md:text-left">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-sm font-semibold text-primary">
-                  3
-                </span>
-                <h3 className="mt-4 font-semibold text-foreground">Enjoy & store</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  We’ll send storage and handling tips with your order.
-                </p>
-              </motion.div>
-            </motion.div>
-            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
-              <span className="inline-flex items-center gap-1.5">
-                <LocalPickupIcon className="h-3.5 w-3.5" />
-                Local pickup & delivery
+      {/* 6) How local buying works — minimalist 3-step timeline */}
+      <section className="border-b border-border/80 py-20 md:py-28">
+        <div className="container mx-auto max-w-2xl px-4">
+          <h2 className="font-serif text-2xl font-semibold tracking-tight text-foreground md:text-3xl text-center">
+            How local buying works
+          </h2>
+          <ol className="mt-14 space-y-12">
+            <li className="flex gap-6">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-muted/50 font-serif text-sm font-semibold text-foreground">
+                1
               </span>
-              <span>Small-batch</span>
-              <span>Guides included</span>
-            </motion.div>
-          </motion.div>
+              <div>
+                <h3 className="font-medium text-foreground">Choose your mushrooms</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Browse and add to cart.
+                </p>
+              </div>
+            </li>
+            <li className="flex gap-6">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-muted/50 font-serif text-sm font-semibold text-foreground">
+                2
+              </span>
+              <div>
+                <h3 className="font-medium text-foreground">Pickup or delivery</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Select at checkout.
+                </p>
+              </div>
+            </li>
+            <li className="flex gap-6">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-muted/50 font-serif text-sm font-semibold text-foreground">
+                3
+              </span>
+              <div>
+                <h3 className="font-medium text-foreground">Enjoy</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Storage tips included with every order.
+                </p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
-      {/* Newsletter / Stay in the loop */}
-      <section className="border-t border-border py-20 md:py-28">
+      {/* 7) Email — gallery guest list feel */}
+      <section className="py-20 md:py-28">
         <div className="container mx-auto max-w-xl px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <SectionLabel>Stay in the loop</SectionLabel>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-              Get harvest updates
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              New harvests, restocks, and growing tips. No spam.
-            </p>
-            <div className="mt-8">
-              <HomeEmailCapture />
-            </div>
-          </motion.div>
+          <h2 className="font-serif text-2xl font-semibold tracking-tight text-foreground">
+            Harvest drops & small notes
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Get harvest drops and small notes from the grow room. No spam.
+          </p>
+          <div className="mt-8">
+            <HomeEmailCapture />
+          </div>
         </div>
       </section>
     </div>

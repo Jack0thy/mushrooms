@@ -2,45 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ever Again Mushrooms — design tokens
+ * Quiet gallery: warm off-white, charcoal, sage, soft gold.
+ * Editorial serif + humanist sans. Generous whitespace.
+ */
 @layer base {
   :root {
-    --background: 40 25% 98%;
-    --foreground: 24 10% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 24 10% 10%;
-    --primary: 142 45% 28%;
-    --primary-foreground: 0 0% 100%;
+    /* Background: warm off-white / eggshell */
+    --background: 40 20% 98%;
+    --foreground: 24 15% 12%;
+    /* Cards: gallery-label feel */
+    --card: 40 25% 99%;
+    --card-foreground: 24 15% 12%;
+    /* Primary: muted sage/moss (no bright green) */
+    --primary: 140 18% 32%;
+    --primary-foreground: 40 20% 98%;
+    /* Secondary: warm light */
     --secondary: 40 20% 94%;
-    --secondary-foreground: 24 10% 10%;
-    --muted: 40 15% 94%;
-    --muted-foreground: 24 8% 42%;
-    --accent: 40 25% 92%;
-    --accent-foreground: 24 10% 10%;
-    --destructive: 0 84% 60%;
+    --secondary-foreground: 24 15% 12%;
+    /* Muted: calm grey */
+    --muted: 40 12% 93%;
+    --muted-foreground: 24 10% 42%;
+    /* Accent: soft gold/tan highlight */
+    --accent: 38 28% 88%;
+    --accent-foreground: 24 15% 12%;
+    --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 40 15% 88%;
-    --input: 40 15% 88%;
-    --ring: 142 45% 28%;
+    /* Borders: subtle */
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
+    --ring: 140 18% 32%;
   }
 
   .dark {
-    --background: 24 10% 8%;
-    --foreground: 40 15% 95%;
-    --card: 24 10% 11%;
-    --card-foreground: 40 15% 95%;
-    --primary: 142 40% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 24 10% 18%;
-    --secondary-foreground: 40 15% 95%;
-    --muted: 24 10% 18%;
+    --background: 24 12% 8%;
+    --foreground: 40 15% 94%;
+    --card: 24 12% 10%;
+    --card-foreground: 40 15% 94%;
+    --primary: 140 20% 42%;
+    --primary-foreground: 40 20% 98%;
+    --secondary: 24 12% 16%;
+    --secondary-foreground: 40 15% 94%;
+    --muted: 24 12% 16%;
     --muted-foreground: 40 10% 55%;
-    --accent: 24 10% 18%;
-    --accent-foreground: 40 15% 95%;
-    --destructive: 0 62% 50%;
+    --accent: 38 20% 22%;
+    --accent-foreground: 40 15% 94%;
+    --destructive: 0 55% 45%;
     --destructive-foreground: 0 0% 100%;
-    --border: 24 10% 22%;
-    --input: 24 10% 22%;
-    --ring: 142 40% 45%;
+    --border: 24 12% 20%;
+    --input: 24 12% 20%;
+    --ring: 140 20% 42%;
   }
 }
 
@@ -50,5 +61,9 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+  }
+  /* Focus: clear, accessible */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }

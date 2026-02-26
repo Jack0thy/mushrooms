@@ -52,9 +52,14 @@ export function ShopClient({
   }, [products, category, intendedUse, speciesFilter, inStockOnly, sort]);
 
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-8">
-      <div className="flex items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold tracking-tight">Shop</h1>
+    <div className="container mx-auto max-w-5xl px-4 py-16 md:py-22">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="font-serif text-3xl font-semibold tracking-tight text-foreground">Shop</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Fresh mushrooms and grow supplies. Filter by species, category, or use.
+          </p>
+        </div>
         <div className="flex items-center gap-2">
           <label htmlFor="sort" className="text-sm text-muted-foreground">
             Sort
@@ -63,7 +68,7 @@ export function ShopClient({
             id="sort"
             value={sort}
             onChange={(e) => setSort(e.target.value as SortOption)}
-            className="rounded-md border border-input bg-background px-3 py-1.5 text-sm"
+            className="rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <option value="featured">Featured</option>
             <option value="newest">Newest</option>
@@ -73,18 +78,18 @@ export function ShopClient({
         </div>
       </div>
 
-      <div className="mt-6 flex gap-8">
+      <div className="mt-10 flex gap-10">
         <aside
           id="grow-supplies"
           className={cn(
-            "w-56 shrink-0 space-y-6 border-r border-border pr-6",
+            "w-52 shrink-0 space-y-6 border-r border-border/80 pr-6",
             "max-md:fixed max-md:left-0 max-md:top-0 max-md:z-50 max-md:h-full max-md:w-72 max-md:border-r max-md:bg-background max-md:pr-4 max-md:pt-20",
             !mobileFiltersOpen && "max-md:hidden"
           )}
         >
           <div>
-            <p className="text-sm font-semibold">Category</p>
-            <ul className="mt-2 space-y-1">
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Category</p>
+            <ul className="mt-3 space-y-1">
               <li>
                 <button
                   type="button"
@@ -114,7 +119,7 @@ export function ShopClient({
             </ul>
           </div>
           <div>
-            <p className="text-sm font-semibold">Intended use</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Use</p>
             <ul className="mt-2 space-y-1">
               <li>
                 <button
@@ -145,7 +150,7 @@ export function ShopClient({
             </ul>
           </div>
           <div>
-            <p className="text-sm font-semibold">Species</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Species</p>
             <ul className="mt-2 space-y-1">
               <li>
                 <button
@@ -199,7 +204,7 @@ export function ShopClient({
           </p>
           <motion.div
             layout
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
             <AnimatePresence mode="popLayout">
               {filtered.map((product) => (

@@ -7,7 +7,7 @@ import { getMedusaProducts, isMedusaConfigured } from "@/lib/medusa";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Fresh gourmet mushrooms, liquid cultures, grain spawn, and grow kits. Local pickup and shipping.",
+  description: "Fresh mushrooms and grow supplies. Local pickup and weekly delivery in the Ottawa Valley.",
 };
 
 export default async function ShopPage() {

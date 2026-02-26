@@ -1,17 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { SporeCircles } from "@/components/icons";
 import type { Species } from "@/data/species";
 import type { Product } from "@/data/products";
-
-const difficultyLabels = ["", "Easy", "Moderate", "Moderate+", "Advanced", "Expert"];
-const yieldLabels = { low: "Low", medium: "Medium", high: "High" };
-const co2Labels = { low: "Low", medium: "Medium", high: "High" };
 
 export function MushroomDetail({
   species,
@@ -20,107 +12,131 @@ export function MushroomDetail({
   species: Species;
   products: Product[];
 }) {
-  const freshProduct = products.find((p) => p.category === "fresh");
-  const spawnProduct = products.find((p) => p.category === "grain-spawn");
-  const cultureProduct = products.find((p) => p.category === "liquid-culture");
+  const freshProduct = products.find((p) => p.category === "fresh" && p.speciesSlug === species.slug);
+  const spawnProduct = products.find((p) => p.category === "grain-spawn" && p.speciesSlug === species.slug);
+  const cultureProduct = products.find((p) => p.category === "liquid-culture" && p.speciesSlug === species.slug);
+  const shopProducts = products.filter(
+    (p) => p.speciesSlug === species.slug
+  );
 
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-12">
-      <div className="grid gap-10 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border bg-muted flex items-center justify-center">
-            <SporeCircles className="h-24 w-24 text-muted-foreground/50" />
+    <div className="container mx-auto max-w-5xl px-4 py-16 md:py-22">
+      <div className="grid gap-14 lg:grid-cols-5 lg:gap-16">
+        {/* Left: large gallery area */}
+        <div className="lg:col-span-3">
+          <div className="aspect-[4/3] overflow-hidden rounded-lg border border-border/80 bg-muted/30">
+            <img
+              // src={getSpeciesImage(species.slug)}
+              alt=""
+              className="h-full w-full object-cover"
+              width={800}
+              height={600}
+            />
           </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">{species.name}</CardTitle>
-              <p className="text-sm italic text-muted-foreground">{species.scientificName}</p>
-              <p className="text-muted-foreground">{species.tagline}</p>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <dl className="grid grid-cols-2 gap-3 text-sm">
-                <dt className="text-muted-foreground">Taste</dt>
-                <dd>{species.taste}</dd>
-                <dt className="text-muted-foreground">Texture</dt>
-                <dd>{species.texture}</dd>
-                <dt className="text-muted-foreground">Best cooking</dt>
-                <dd>{species.bestForCooking}</dd>
-                <dt className="text-muted-foreground">Difficulty to grow</dt>
-                <dd>{difficultyLabels[species.difficultyToGrow]}</dd>
-                <dt className="text-muted-foreground">Yield</dt>
-                <dd>{yieldLabels[species.yield]}</dd>
-                <dt className="text-muted-foreground">CO₂ tolerance</dt>
-                <dd>{co2Labels[species.co2Tolerance]}</dd>
-                <dt className="text-muted-foreground">Storage (fridge)</dt>
-                <dd>{species.storageLifeFridge}</dd>
-              </dl>
-              <div className="flex flex-wrap gap-2 pt-4">
-                {freshProduct && (
-                  <Button asChild size="sm">
-                    <Link href={`/shop?highlight=${freshProduct.slug}`}>Buy Fresh</Link>
-                  </Button>
-                )}
-                {spawnProduct && (
-                  <Button asChild variant="secondary" size="sm">
-                    <Link href={`/shop?highlight=${spawnProduct.slug}`}>Buy Grain Spawn</Link>
-                  </Button>
-                )}
-                {cultureProduct && (
-                  <Button asChild variant="outline" size="sm">
-                    <Link href={`/shop?highlight=${cultureProduct.slug}`}>Buy Liquid Culture</Link>
-                  </Button>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+        </div>
+
+        {/* Right: How it tastes, Best uses, Quick method, Storage */}
+        <div className="lg:col-span-2 space-y-10">
+          <div>
+            <h1 className="font-serif text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              {species.name}
+            </h1>
+            <p className="mt-1 text-sm italic text-muted-foreground">{species.scientificName}</p>
+          </div>
+
+          <section>
+            <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              How it tastes
+            </h2>
+            <p className="mt-2 text-foreground">{species.taste}</p>
+            <p className="mt-1 text-muted-foreground">{species.texture}</p>
+          </section>
+
+          <section>
+            <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Best uses
+            </h2>
+            <p className="mt-2 text-foreground">{species.bestForCooking}</p>
+          </section>
+
+          <section>
+            <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Quick method
+            </h2>
+            <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-foreground">
+              {species.cookingSuggestions.slice(0, 3).map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Storage
+            </h2>
+            <p className="mt-2 text-foreground">{species.storageLifeFridge}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{species.storageAndHandling}</p>
+          </section>
+
+          <div className="flex flex-wrap gap-3 pt-2">
+            {freshProduct && (
+              <Button asChild size="sm">
+                <Link href={`/shop?highlight=${freshProduct.slug}`}>Shop fresh</Link>
+              </Button>
+            )}
+            {spawnProduct && (
+              <Button asChild variant="outline" size="sm">
+                <Link href={`/shop?highlight=${spawnProduct.slug}`}>Grain spawn</Link>
+              </Button>
+            )}
+            {cultureProduct && (
+              <Button asChild variant="outline" size="sm">
+                <Link href={`/shop?highlight=${cultureProduct.slug}`}>Liquid culture</Link>
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
 
-      <div className="mt-16 space-y-12">
-        <section>
-          <h2 className="text-xl font-semibold">Overview</h2>
-          <p className="mt-2 text-muted-foreground leading-relaxed">{species.overview}</p>
+      {/* Bottom: full overview, flavor & cooking, shop products, Learn links */}
+      <div className="mt-20 space-y-16 border-t border-border/80 pt-16">
+        <section className="max-w-2xl">
+          <h2 className="font-serif text-xl font-semibold text-foreground">Overview</h2>
+          <p className="mt-3 text-muted-foreground leading-relaxed">{species.overview}</p>
         </section>
-        <section>
-          <h2 className="text-xl font-semibold">Flavor & cooking</h2>
-          <p className="mt-2 text-muted-foreground leading-relaxed">{species.flavorAndCooking}</p>
-          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+        <section className="max-w-2xl">
+          <h2 className="font-serif text-xl font-semibold text-foreground">Flavor & cooking</h2>
+          <p className="mt-3 text-muted-foreground leading-relaxed">{species.flavorAndCooking}</p>
+          <ul className="mt-4 list-inside list-disc space-y-1 text-sm text-muted-foreground">
             {species.cookingSuggestions.map((s, i) => (
               <li key={i}>{s}</li>
             ))}
           </ul>
         </section>
+
+        {shopProducts.length > 0 && (
+          <section>
+            <h2 className="font-serif text-xl font-semibold text-foreground">Shop this species</h2>
+            <ul className="mt-4 flex flex-wrap gap-3">
+              {shopProducts.map((p) => (
+                <li key={p.id}>
+                  <Button asChild variant="outline" size="sm">
+                    <Link href={"/shop?highlight=" + p.slug}>{p.name}</Link>
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section>
-          <h2 className="text-xl font-semibold">Cultivation notes</h2>
-          <p className="mt-2 text-muted-foreground leading-relaxed">{species.cultivationNotes}</p>
-        </section>
-        <section>
-          <h2 className="text-xl font-semibold">Storage & handling</h2>
-          <p className="mt-2 text-muted-foreground leading-relaxed">{species.storageAndHandling}</p>
-        </section>
-        <section>
-          <h2 className="text-xl font-semibold">Why Cedar Roots grows it</h2>
-          <p className="mt-2 text-muted-foreground leading-relaxed">{species.whyWeGrowIt}</p>
-        </section>
-        <section>
-          <h2 className="text-xl font-semibold">Pairs well with</h2>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {species.pairsWellWith.map((item) => (
-              <Badge key={item} variant="secondary">
-                {item}
-              </Badge>
-            ))}
-          </div>
+          <h2 className="font-serif text-xl font-semibold text-foreground">Learn more</h2>
+          <p className="mt-2 text-muted-foreground">
+            Guides for cooking, storage, and cultivation.
+          </p>
+          <Button asChild variant="outline" size="sm" className="mt-3">
+            <Link href="/learn">Explore Learn</Link>
+          </Button>
         </section>
       </div>
     </div>

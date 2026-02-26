@@ -32,8 +32,8 @@ export function HomeEmailCapture() {
 
   if (status === "success") {
     return (
-      <p className="text-sm text-primary font-medium">
-        Thanks. We&apos;ll send harvest updates to your inbox.
+      <p className="text-sm text-foreground">
+        Thanks. You’re on the list for harvest drops and small notes.
       </p>
     );
   }
@@ -54,7 +54,7 @@ export function HomeEmailCapture() {
         required
       />
       <Button type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Submitting…" : "Subscribe"}
+        {status === "loading" ? "Submitting…" : "Join"}
       </Button>
     </form>
   );
