@@ -15,16 +15,16 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ever Again Mushrooms | Rediscover Cooking",
-    template: "%s | Ever Again Mushrooms",
+    default: "Cedar Roots Mushrooms | Gourmet mushrooms & growing supplies",
+    template: "%s | Cedar Roots Mushrooms",
   },
   description:
-    "Craft-grown gourmet mushrooms for curious kitchens. Local pickup and weekly delivery in the Ottawa Valley. Cook something new again.",
+    "Gourmet mushrooms for the kitchen and cultures and spawn for growers. Local pickup and weekly delivery in the Ottawa Valley.",
   openGraph: {
     type: "website",
     locale: "en_US",
   },
-  metadataBase: new URL("https://everagainmushrooms.com"),
+  metadataBase: new URL("https://cedarrootsmushrooms.com"),
 };
 
 export default function RootLayout({

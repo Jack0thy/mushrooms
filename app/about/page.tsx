@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Ever Again Mushrooms: make cooking feel new again. Small-batch cultivation, calm education, resilience.",
+  description: "Cedar Roots Mushrooms: gourmet mushrooms and growing supplies. Small-batch cultivation, calm education.",
 };
 
 export default function AboutPage() {
@@ -16,10 +16,10 @@ export default function AboutPage() {
 
       <section className="mt-10 space-y-6 text-muted-foreground leading-relaxed">
         <p>
-          Ever Again Mushrooms exists to make cooking feel new again. We grow gourmet mushrooms in small batches, handle them with care, and offer calm, practical education so you can rediscover what’s possible in the kitchen.
+          Cedar Roots Mushrooms grows gourmet mushrooms and supplies cultures and spawn for growers. We work in small batches, handle everything with care, and offer calm, practical education—for the kitchen and for the lab.
         </p>
         <p>
-          Good cooking is something you rediscover again and again. We’re here for that—for curious kitchens and for growers who want precision without the noise.
+          We’re here for curious kitchens and for growers who want precision without the noise.
         </p>
       </section>
 

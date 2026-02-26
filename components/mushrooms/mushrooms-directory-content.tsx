@@ -22,8 +22,14 @@ export function MushroomsDirectoryContent() {
             key={s.slug}
             className="overflow-hidden border-border/80 bg-card transition-shadow hover:shadow-sm"
           >
-            <div className="aspect-[4/3] flex items-center justify-center bg-muted/30 text-muted-foreground/40">
-              <span className="text-xs uppercase tracking-wider">Photo</span>
+            <div className="aspect-[4/3] overflow-hidden bg-muted/30">
+              <img
+                // src={getSpeciesImage(s.slug)}
+                alt=""
+                className="h-full w-full object-cover"
+                width={800}
+                height={600}
+              />
             </div>
             <CardHeader className="space-y-2">
               <h2 className="font-serif text-lg font-semibold text-foreground">

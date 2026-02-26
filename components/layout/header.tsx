@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingCart, Menu } from "lucide-react";
+import { ShoppingCart, Menu, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useCart } from "@/components/cart/cart-provider";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /* Kitchen-first: Shop, Mushrooms primary; Learn secondary; Grow Supplies tertiary */
@@ -25,7 +26,11 @@ const allNav = [...navPrimary, ...navSecondary, ...navTertiary];
 export function Header() {
   const pathname = usePathname();
   const { itemCount, openCart } = useCart();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -44,7 +49,7 @@ export function Header() {
               href="/"
               className="font-serif text-xl font-semibold tracking-tight text-foreground md:text-2xl"
             >
-              Ever Again
+              Cedar Roots
             </Link>
           </div>
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
@@ -89,6 +94,16 @@ export function Header() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            {mounted && (
+              <button
+                type="button"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="rounded-md p-2 text-muted-foreground hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+            )}
             <button
               type="button"
               onClick={openCart}

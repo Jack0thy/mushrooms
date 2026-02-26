@@ -1,4 +1,4 @@
-# Ever Again Mushrooms — Brand Spec
+# Cedar Roots Mushrooms — Brand Spec (aesthetics)
 
 ## Core idea
 **Rediscovery.** “Cooking feels new again.”
@@ -10,7 +10,7 @@
 ## Brand language
 - Short, confident lines. No hype. No exclamation marks.
 - Key phrases (use sparingly): “Rediscover cooking.” “Cook something new again.” “For curious kitchens.”
-- If someone asks what “Ever Again” means: “Because good cooking is something you rediscover again and again.”
+- If someone asks what Cedar Roots is about: “Good cooking is something you rediscover again and again.”
 
 ---
 

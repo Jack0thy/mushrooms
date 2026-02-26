@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/contact/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Ever Again Mushrooms. Questions, orders, weekly delivery.",
+  description: "Get in touch with Cedar Roots Mushrooms. Questions, orders, weekly delivery.",
 };
 
 export default function ContactPage() {
@@ -20,10 +20,10 @@ export default function ContactPage() {
         <p className="font-medium text-foreground">Elsewhere</p>
         <p>
           <a
-            href="mailto:info@everagainmushrooms.com"
+            href="mailto:info@cedarrootsmushrooms.com"
             className="underline underline-offset-2 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            info@everagainmushrooms.com
+            info@cedarrootsmushrooms.com
           </a>
         </p>
         <p>Local pickup: Pembroke. Weekly delivery in the Ottawa Valley.</p>

@@ -1,7 +1,7 @@
-# Migration notes — Ever Again Mushrooms redesign
+# Migration notes — Cedar Roots redesign (aesthetics retained)
 
 ## What changed
-- **Brand:** Cedar Roots → Ever Again Mushrooms. Copy and voice updated site-wide.
+- **Brand:** Cedar Roots name retained. New typography, palette, and editorial layout applied site-wide.
 - **Design system:** New palette (warm off-white, charcoal, sage, soft gold), Cormorant Garamond + Inter, gallery-like spacing and components.
 - **IA:** Nav is kitchen-first: Shop, Species, Learn, then Grow Supplies, About, Contact. “Mushrooms” appears as “Species” in nav and metadata where appropriate.
 - **Pages:** Home, Species index, Species detail, Shop, Learn, About, Contact restyled; product detail sheet now includes “How to cook it” and “Storage” (from species when `product.speciesSlug` is set).
@@ -14,15 +14,15 @@
 - **Tags:** Used on homepage and product cards as “character” (e.g. Meaty, Delicate, Umami). Populate `product.tags` for richer presentation.
 
 ### Species
-- **Data:** `data/species.ts` unchanged. No new fields. “Why we grow it” copy can be updated to “Why Ever Again grows it” if desired (currently component says “Full species guide” and doesn’t reference the old name in new UI).
+- **Data:** `data/species.ts` unchanged. No new fields. “Why we grow it” is used on species detail (currently component says “Full species guide” and doesn’t reference the old name in new UI).
 - **Species detail:** Template now expects products filtered by `speciesSlug`; the dynamic page already does this.
 
 ### Learn (articles)
 - **Data:** `data/articles.ts` unchanged. Categories and slugs stay the same. Only layout and typography changed.
 
 ### Copy and config
-- **Metadata:** `app/layout.tsx` — title template and default description updated to Ever Again. Update `metadataBase` URL when the production domain is set.
-- **Contact email:** Replaced with `info@everagainmushrooms.com` in footer and contact page. Restore or change via env or find/replace if you keep another address.
+- **Metadata:** `app/layout.tsx` — title template and default description use Cedar Roots. Update `metadataBase` URL when the production domain is set.
+- **Contact email:** `info@cedarrootsmushrooms.com` in footer and contact page. Change via env or find/replace if needed.
 - **Location:** Footer and contact page say “Ottawa Valley”, “Pembroke” for pickup. Update if your location differs.
 
 ### Images

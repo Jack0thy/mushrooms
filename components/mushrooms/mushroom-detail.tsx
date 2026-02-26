@@ -25,9 +25,13 @@ export function MushroomDetail({
         {/* Left: large gallery area */}
         <div className="lg:col-span-3">
           <div className="aspect-[4/3] overflow-hidden rounded-lg border border-border/80 bg-muted/30">
-            <div className="flex h-full w-full items-center justify-center text-muted-foreground/40">
-              <span className="text-sm uppercase tracking-wider">Gallery</span>
-            </div>
+            <img
+              // src={getSpeciesImage(species.slug)}
+              alt=""
+              className="h-full w-full object-cover"
+              width={800}
+              height={600}
+            />
           </div>
         </div>
 

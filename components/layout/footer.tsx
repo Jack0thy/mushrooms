@@ -20,16 +20,16 @@ export function Footer() {
       <div className="container mx-auto max-w-5xl px-4 py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="font-serif text-lg font-semibold text-foreground">Ever Again Mushrooms</p>
+            <p className="font-serif text-lg font-semibold text-foreground">Cedar Roots Mushrooms</p>
             <p className="mt-2 max-w-sm text-sm text-muted-foreground">
               Ottawa Valley. Weekly harvest drops. Local pickup and delivery.
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
               <a
-                href="mailto:info@everagainmushrooms.com"
+                href="mailto:info@cedarrootsmushrooms.com"
                 className="underline underline-offset-2 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                info@everagainmushrooms.com
+                info@cedarrootsmushrooms.com
               </a>
             </p>
           </div>
@@ -47,7 +47,7 @@ export function Footer() {
         </div>
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border/80 pt-8">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Ever Again Mushrooms.
+            © {new Date().getFullYear()} Cedar Roots Mushrooms.
           </p>
           <ul className="flex gap-6">
             {legalLinks.map(({ href, label }) => (

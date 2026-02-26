@@ -42,8 +42,14 @@ export function ProductDetailSheet({ product, open, onOpenChange }: ProductDetai
           <DialogTitle className="font-serif text-xl">{product.name}</DialogTitle>
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
-        <div className="aspect-[4/3] w-full rounded-md flex items-center justify-center my-4 bg-muted/20 text-muted-foreground/40">
-          <span className="text-xs uppercase tracking-wider">Product</span>
+        <div className="aspect-[4/3] w-full overflow-hidden rounded-md my-4 bg-muted/20">
+          <img
+            // src={getProductImage(product.speciesSlug)}
+            alt=""
+            className="h-full w-full object-cover"
+            width={800}
+            height={600}
+          />
         </div>
         {hasVariants && (
           <div className="mb-4">

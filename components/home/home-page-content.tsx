@@ -32,12 +32,13 @@ export function HomePageContent({ products = [] }: { products?: Product[] }) {
     <div className="flex flex-col">
       {/* 1) Hero — quiet, one thesis, primary + secondary CTA */}
       <section className="border-b border-border/80">
+   
         <div className="container mx-auto max-w-2xl px-4 py-24 text-center md:py-32">
           <h1 className="font-serif text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl">
-            Ever Again Mushrooms
+            Cedar Roots Mushrooms
           </h1>
           <p className="mt-6 text-lg text-muted-foreground">
-            Cooking feels new again.
+            Gourmet mushrooms and growing supplies.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="font-medium">
@@ -59,11 +60,11 @@ export function HomePageContent({ products = [] }: { products?: Product[] }) {
         </div>
       </section>
 
-      {/* 3) Three ways to rediscover — Kitchen dominant, Learn + Growers calm */}
+      {/* 3) What we offer — Kitchen, Learn, Growers */}
       <section className="border-b border-border/80 py-20 md:py-28">
         <div className="container mx-auto max-w-5xl px-4">
           <h2 className="font-serif text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
-            Three ways to rediscover
+            What we offer
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             <Link

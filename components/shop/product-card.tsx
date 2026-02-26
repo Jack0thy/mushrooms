@@ -28,8 +28,14 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <>
       <Card className="flex h-full flex-col overflow-hidden border-border/80 bg-card transition-shadow hover:shadow-sm">
-        <div className="aspect-[4/3] flex items-center justify-center bg-muted/20 text-muted-foreground/40">
-          <span className="text-xs uppercase tracking-wider">Product</span>
+        <div className="aspect-[4/3] overflow-hidden bg-muted/20">
+          <img
+            // src={getProductImage(product.speciesSlug)}
+            alt=""
+            className="h-full w-full object-cover"
+            width={800}
+            height={600}
+          />
         </div>
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between gap-2">
